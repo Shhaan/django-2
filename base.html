@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GAME - {%block  title %} 
+        {% endblock %}</title>
+        <link rel="stylesheet" href="{% static '/css/style.css/' %}">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark  " style="height: 70px;">
+        <div class="container-fluid bg-dark" style="justify-content: space-between;    z-index: 1;">
+          <a class="navbar-brand text-white" style="font-size: 30px;padding-left: 50px;" href="/">Games</a>
+          <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav" style="justify-content: end;">
+            <ul class="navbar-nav" style="    font-size: 22px; ">
+              
+            
+              <li class="nav-item">
+                <a class="nav-link active text-white" aria-current="page" href="{% url 'home' %}">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white  " href="{% url 'about' %}">About</a>
+              </li>
+                  {% if user.is_authenticated %}
+                  <li class="nav-item">
+                    <a class="nav-link text-white" href="{% url 'feedback' %}">Feedback</a>
+                  </li>
+                  {% endif  %}
+              
+              <li class="nav-item">
+                <a class="nav-link text-white" href="{% url 'register' %}">Create new user</a></li>
+                {% if user.is_authenticated %}
+                
+              <li class="nav-item">
+                
+                <a class="nav-link text-danger" href="{% url 'logout' %}">Logout</a>
+              </li>
+               {% else %}
+               <li class="nav-item">
+                <a class="nav-link text-primary" href="{% url 'login' %}">Login</a>
+              </li>
+                {% endif %}
+            </ul>
+          </div>
+        </div>
+      </nav>
+      
+        {% if user.is_authenticated %}
+      <h1 id="user" class="text-center text-info">Hello {{user.username}}</h1>
+      {% endif  %}
+
+      <style>#user::selection{
+         color: chartreuse;
+         background-color: black;
+      }
+      </style>
+    {%block  body %} 
+    {% endblock %}
+    <footer id="foot" class=" text-light py-3" >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>&copy; 2023 Your Website</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p>Contact us at example@email.com</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+{% extends 'myadmin.html' %}
+{% block content %}
+<div id="content" class="colM">
+    <h1>Add user</h1>
+    </div>
+    
+
+{% for i in messages %}
+<div class=" text-danger text-center message-alert">
+    <div class="message-content">
+        
+        <p>{{i}}</p>
+         {% endfor %}
+    </div>
+</div>
+    <div class="container">
+        <h2>Registration Form</h2>
+        <form action="" method="post">
+            {% csrf_token %}
+            <label for="username">Username:</label>
+            <input type="text" name="username" >
+
+           
+
+            <label for="firstname">First Name:</label>
+            <input type="text" name="firstname" >
+
+            <label for="lastname">Last Name:</label>
+            <input type="text" name="last_name" >
+            <label for="email">Email:</label>
+            <input type="email" name="email" >
+            <label for="password">Password:</label>
+            <input type="password" name="password1" >
+
+            <label for="password2">Password Verification:</label>
+            <input type="password" name="password2" >
+
+            <input type="submit" >
+        </form>
+    </div>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .error {
+            color: #FF0000;
+        }
+
+    </style>
+{% endblock %}

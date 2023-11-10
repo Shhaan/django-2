@@ -1,0 +1,25 @@
+{% extends 'base.html'%}
+
+{%block title%}HOME{% endblock %}
+
+{%block body%}
+ 
+<div style="display: flex;justify-content:space-evenly;    flex-wrap: wrap;" class="my-5">
+    {% for i in obj %}
+    <div class="card mt-3" style="width: 18rem; ">
+        <img style="height: 170px; display: block;margin: auto;" src="{{i.image.url}}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h3 class="card-title text-center text-dark">{{i.title}} </h3>
+          <p class="card-text text-center">{{i.des}}</p>
+          {% if user.is_authenticated %}     
+          <a href="{% url i.url  %}" class="btn btn-primary d-block">Play {{i.title}}</a>
+          {% else %}
+          <h3 style="font-size:large;color: red;text-align: center;">Login to play {{i.title}}</h3>
+          {% endif  %}
+        </div>
+      </div>
+
+      {% endfor %}
+</div>
+
+{% endblock %}

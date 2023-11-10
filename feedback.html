@@ -1,0 +1,37 @@
+{% extends 'base.html'%}
+
+{%block title%}Feedback{% endblock %}
+
+{%block body%}
+
+<div class="text-center" style="height: 300px;margin-bottom: 200px;">
+ <form action="" method="post" style="position: relative;top: 50%;">
+    {% csrf_token %}
+    
+    <input type="text" id="feed" style="width: 70%; height: 64px;margin-bottom: 30px;" name="feed" placeholder="Enter your feedback"> <br><br>
+    <input type="range" min="0" max="5" name="frange" id="frange"> <h1 style="font-size: large;">Ratings: <span  id="rangedisplay"></span></h1>   <br><br><br>
+     <input class="bg-info text-white border border-solid 1px" style="width: 80px;height: 30px;" type="submit"> 
+     <input style="display: none;" id="nonein" name="nonein" type="text">
+ </form>
+</div>
+{% for message in messages %}
+<div  class="alert bg-danger text-center text-white">
+  {{ message }}
+</div>
+{% endfor %}
+<style>
+#feed::placeholder{
+ text-align: center;
+}
+input {
+  caret-color: black
+}
+</style>
+<script>
+  document.getElementById('rangedisplay').style.color = 'red'
+  document.getElementById('frange').addEventListener('input', function() {
+  document.getElementById('rangedisplay').innerHTML = document.getElementById('frange').value;
+  document.getElementById('nonein').value = document.getElementById('frange').value;
+});
+</script>
+{% endblock %}
